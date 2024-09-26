@@ -1,11 +1,5 @@
 import { queryPossibleMovements, queryForEmptySpace } from './../utils';
-import {
-  Maze,
-  MazeDimensions,
-  MazeCell,
-  Cell,
-  Direction,
-} from '../types';
+import { Maze, MazeDimensions, MazeCell, Cell, Direction } from '../types';
 import { createEmptyMaze, updateMazeCell, queryMaze } from '../utils';
 
 const mazeDimensions: MazeDimensions = {

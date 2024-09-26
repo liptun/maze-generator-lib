@@ -1,1 +1,1 @@
-export { mazeGenerator } from "./maze";
+export { mazeGenerator } from './maze';
