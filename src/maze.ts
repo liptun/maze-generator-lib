@@ -1,6 +1,11 @@
 import { makeDecision } from './decision';
 import { noiseGenerator } from './noise';
-import { MazeCellType, MazeCoordinate, MazeGeneratorOptions, Direction } from './types';
+import {
+  MazeCellType,
+  MazeCoordinate,
+  MazeGeneratorOptions,
+  Direction,
+} from './types';
 import {
   createEmptyMaze,
   updateMazeCell,
@@ -13,6 +18,7 @@ import {
 export function* mazeGenerator({ width, height, seed }: MazeGeneratorOptions) {
   // create noise generator
   const noise = noiseGenerator(seed);
+
   // create empty maze
   let maze = createEmptyMaze({ width, height });
   yield maze;
@@ -50,6 +56,7 @@ export function* mazeGenerator({ width, height, seed }: MazeGeneratorOptions) {
     mazeStartingPoint.x = startingWall === Direction.Left ? 0 : width - 1;
     mazeStartingPoint.y = entranceOffset;
   }
+
   // start walking in random possible direction until no move is possible
   const cursors: MazeCoordinate[] = [{ ...mazeStartingPoint }];
   let mazeIsReady = false;
@@ -102,27 +109,29 @@ export function* mazeGenerator({ width, height, seed }: MazeGeneratorOptions) {
     }
     yield maze;
   }
+
   // replace all visited cells with empty cells
   const visited = queryMaze(maze, MazeCellType.EmptyVisited);
   visited.forEach((cell) => {
     maze = updateMazeCell(maze, { ...cell, type: MazeCellType.Empty });
   });
   yield maze;
+
   // query for all border empty spaces
   const allEmptySpaces = queryMaze(maze, MazeCellType.Empty);
   const entranceOptions = allEmptySpaces.filter(
     ({ x, y }) => x === 0 || y === 0 || x === width - 1 || y === height - 1
   );
+
   // put entrance
   const mazeEntrance = makeDecision(entranceOptions, noise.next().value);
   maze = updateMazeCell(maze, { ...mazeEntrance, type: MazeCellType.Entrance });
   yield maze;
-  // put exit
 
+  // put exit
   const exitOptions = entranceOptions.filter(
     ({ x, y }) => x !== mazeEntrance.x && y !== mazeEntrance.y
   );
-
   const mazeExit = makeDecision(exitOptions, noise.next().value);
   maze = updateMazeCell(maze, { ...mazeExit, type: MazeCellType.Exit });
   yield maze;
