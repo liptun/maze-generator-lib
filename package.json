@@ -1,21 +1,27 @@
 {
-    "name": "maze-generator-lib",
-    "version": "1.0.0",
-    "description": "",
-    "main": "src/index.ts",
-    "scripts": {
-        "build": "tsc",
-        "prepare": "npm run build",
-        "prettier": "prettier --write src"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "prettier": "^3.3.3",
-        "typescript": "^5.6.2"
-    },
-    "dependencies": {
-        "alea": "^1.0.1",
-        "simplex-noise": "^4.0.3"
-    }
+  "name": "maze-generator-lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prettier": "prettier --write src",
+    "eslint": "eslint src/*.ts",
+    "ts-check": "tsc --noEmit"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.11.1",
+    "eslint": "^9.11.1",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.7.0"
+  },
+  "dependencies": {
+    "alea": "^1.0.1",
+    "simplex-noise": "^4.0.3"
+  }
 }
