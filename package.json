@@ -9,7 +9,7 @@
     "prettier": "prettier --write src",
     "eslint": "eslint src/*.ts",
     "ts-check": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "author": "",
   "license": "ISC",

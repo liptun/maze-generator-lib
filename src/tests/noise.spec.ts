@@ -1,23 +1,23 @@
 import { noiseGenerator, scaleNoise } from '../noise';
 
 describe('Noise generator', () => {
-  it('Should numbers from range -1 and 1 scale properly', () => {
+  it('should scale properly numbers to range from 0 to 1', () => {
     expect(scaleNoise(1)).toEqual(1);
     expect(scaleNoise(0)).toEqual(0.5);
     expect(scaleNoise(-1)).toEqual(0);
   });
 
-  it('Should clip to 1 numbers larger than 1', () => {
+  it('should clip to 1 numbers larger than 1', () => {
     expect(scaleNoise(1.1)).toEqual(1);
     expect(scaleNoise(2)).toEqual(1);
   });
 
-  it('Should clip to 0 numbers smaller than -1', () => {
+  it('should clip to 0 numbers smaller than -1', () => {
     expect(scaleNoise(-1.1)).toEqual(0);
     expect(scaleNoise(-2)).toEqual(0);
   });
 
-  it('Generator should return numeric value', () => {
+  it('should return numeric value from generator value', () => {
     const noise = noiseGenerator('seed');
     expect(typeof noise.next().value).toBe('number');
   });
