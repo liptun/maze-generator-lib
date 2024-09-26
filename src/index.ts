@@ -1,0 +1,1 @@
+export { mazeGenerator } from "./maze";
