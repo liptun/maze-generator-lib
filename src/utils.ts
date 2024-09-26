@@ -49,39 +49,54 @@ export const queryPossibleMovements = (
   const freeSurroundings = [...freeSpaces, Cell.Outside];
   // top
   if (freeSpaces.includes(getCell(maze, { x, y: y - 1 }))) {
-    [...freeSurroundings].includes(getCell(maze, { x: x - 1, y: y - 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x + 1, y: y - 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x - 1, y: y - 2 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x, y: y - 2 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x + 1, y: y - 2 })) &&
+    if (
+      freeSurroundings.includes(getCell(maze, { x: x - 1, y: y - 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x + 1, y: y - 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x - 1, y: y - 2 })) &&
+      freeSurroundings.includes(getCell(maze, { x, y: y - 2 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x + 1, y: y - 2 }))
+    ) {
       result.push(Direction.Top);
+    }
   }
+
   // right
   if (freeSpaces.includes(getCell(maze, { x: x + 1, y }))) {
-    [...freeSurroundings].includes(getCell(maze, { x: x + 1, y: y - 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x + 1, y: y + 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x + 2, y: y - 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x + 2, y })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x + 2, y: y + 1 })) &&
+    if (
+      freeSurroundings.includes(getCell(maze, { x: x + 1, y: y - 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x + 1, y: y + 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x + 2, y: y - 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x + 2, y })) &&
+      freeSurroundings.includes(getCell(maze, { x: x + 2, y: y + 1 }))
+    ) {
       result.push(Direction.Right);
+    }
   }
+
   // bottom
   if (freeSpaces.includes(getCell(maze, { x, y: y + 1 }))) {
-    [...freeSurroundings].includes(getCell(maze, { x: x - 1, y: y + 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x + 1, y: y + 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x - 1, y: y + 2 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x, y: y + 2 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x + 1, y: y + 2 })) &&
+    if (
+      freeSurroundings.includes(getCell(maze, { x: x - 1, y: y + 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x + 1, y: y + 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x - 1, y: y + 2 })) &&
+      freeSurroundings.includes(getCell(maze, { x, y: y + 2 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x + 1, y: y + 2 }))
+    ) {
       result.push(Direction.Bottom);
+    }
   }
+
   // left
   if (freeSpaces.includes(getCell(maze, { x: x - 1, y }))) {
-    [...freeSurroundings].includes(getCell(maze, { x: x - 1, y: y - 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x - 1, y: y + 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x - 2, y: y - 1 })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x - 2, y })) &&
-      [...freeSurroundings].includes(getCell(maze, { x: x - 2, y: y + 1 })) &&
+    if (
+      freeSurroundings.includes(getCell(maze, { x: x - 1, y: y - 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x - 1, y: y + 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x - 2, y: y - 1 })) &&
+      freeSurroundings.includes(getCell(maze, { x: x - 2, y })) &&
+      freeSurroundings.includes(getCell(maze, { x: x - 2, y: y + 1 }))
+    ) {
       result.push(Direction.Left);
+    }
   }
 
   return result;
