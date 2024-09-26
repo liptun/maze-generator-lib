@@ -1,4 +1,4 @@
-export enum Cell {
+export enum MazeCellType {
   Empty = ' ',
   EmptyVisited = '.',
   Outside = -1,
@@ -17,7 +17,7 @@ export interface MazeDimensions {
   height: number;
 }
 export interface MazeCell extends MazeCoordinate {
-  type: Cell;
+  type: MazeCellType;
 }
 
 export interface MazeGeneratorOptions extends MazeDimensions {
@@ -33,7 +33,7 @@ export enum Direction {
 
 export interface Surrounding {
   direction: Direction;
-  type: Cell;
+  type: MazeCellType;
 }
 
-export type Maze = Cell[][];
+export type Maze = MazeCellType[][];

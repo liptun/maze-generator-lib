@@ -1,6 +1,6 @@
 import { makeDecision } from './decision';
 import { noiseGenerator } from './noise';
-import { Cell, MazeCoordinate, MazeGeneratorOptions, Direction } from './types';
+import { MazeCellType, MazeCoordinate, MazeGeneratorOptions, Direction } from './types';
 import {
   createEmptyMaze,
   updateMazeCell,
@@ -63,17 +63,17 @@ export function* mazeGenerator({ width, height, seed }: MazeGeneratorOptions) {
       if ([Direction.Right, Direction.Left].includes(move)) {
         cursors[0].x += move === Direction.Right ? 1 : -1;
       }
-      if (![Cell.Exit].includes(getCell(maze, cursors[0]))) {
+      if (![MazeCellType.Exit].includes(getCell(maze, cursors[0]))) {
         maze = updateMazeCell(maze, {
           ...cursors[0],
-          type: Cell.Empty,
+          type: MazeCellType.Empty,
         });
       }
     } else {
       // mark current cell as visited and move cursor to previous position
       maze = updateMazeCell(maze, {
         ...cursors[0],
-        type: Cell.EmptyVisited,
+        type: MazeCellType.EmptyVisited,
       });
 
       const queryCursorPosition = cursors[0];
@@ -103,19 +103,19 @@ export function* mazeGenerator({ width, height, seed }: MazeGeneratorOptions) {
     yield maze;
   }
   // replace all visited cells with empty cells
-  const visited = queryMaze(maze, Cell.EmptyVisited);
+  const visited = queryMaze(maze, MazeCellType.EmptyVisited);
   visited.forEach((cell) => {
-    maze = updateMazeCell(maze, { ...cell, type: Cell.Empty });
+    maze = updateMazeCell(maze, { ...cell, type: MazeCellType.Empty });
   });
   yield maze;
   // query for all border empty spaces
-  const allEmptySpaces = queryMaze(maze, Cell.Empty);
+  const allEmptySpaces = queryMaze(maze, MazeCellType.Empty);
   const entranceOptions = allEmptySpaces.filter(
     ({ x, y }) => x === 0 || y === 0 || x === width - 1 || y === height - 1
   );
   // put entrance
   const mazeEntrance = makeDecision(entranceOptions, noise.next().value);
-  maze = updateMazeCell(maze, { ...mazeEntrance, type: Cell.Entrance });
+  maze = updateMazeCell(maze, { ...mazeEntrance, type: MazeCellType.Entrance });
   yield maze;
   // put exit
 
@@ -124,6 +124,6 @@ export function* mazeGenerator({ width, height, seed }: MazeGeneratorOptions) {
   );
 
   const mazeExit = makeDecision(exitOptions, noise.next().value);
-  maze = updateMazeCell(maze, { ...mazeExit, type: Cell.Exit });
+  maze = updateMazeCell(maze, { ...mazeExit, type: MazeCellType.Exit });
   yield maze;
 }
