@@ -8,15 +8,19 @@
     "prepare": "npm run build",
     "prettier": "prettier --write src",
     "eslint": "eslint src/*.ts",
-    "ts-check": "tsc --noEmit"
+    "ts-check": "tsc --noEmit",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.11.1",
+    "@types/jest": "^29.5.13",
     "eslint": "^9.11.1",
     "globals": "^15.9.0",
+    "jest": "^29.7.0",
     "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.7.0"
   },
